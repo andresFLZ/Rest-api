@@ -1,7 +1,7 @@
 from typing import Any
 from django import http
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 import random
 from .forms import TutorialForm
@@ -49,3 +49,9 @@ class TutorialCreate(CreateView):
             return HttpResponseRedirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form))
+
+class TutorialUpdate(UpdateView):
+    model = Tutorial
+    template_name = 'tutorial/tutorial_form.html'
+    form_class = TutorialForm
+    success_url = reverse_lazy('tutorial:Tutoriales')
