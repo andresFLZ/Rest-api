@@ -1,5 +1,7 @@
 # REST API TUTORIALES
 
+Trabajo desarrollado por Andrés Felipe Limas Zea
+
 ## Instrucciones de instalación
 
 1. Clona el repository de git en tu computadora: git clone https://github.com/andresFLZ/Rest-api.git
