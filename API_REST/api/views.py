@@ -102,3 +102,18 @@ class UsuarioView(View):
         Usuario.objects.create(nombres=jd['nombres'], apellidos=jd['apellidos']) # Crea un usuario en la base de datos
         datos = {'message': "Success"}
         return JsonResponse(datos)
+    
+    def put(self, request, id):
+        # Implememtación del método PUT en la api para actualizar datos de un usuario
+
+        jd = json.loads(request.body) # Recupera los datos del request
+        usuarios = list(Usuario.objects.filter(id_usuario=id).values())
+        if len(usuarios) > 0:
+            usuario = Usuario.objects.get(id_usuario=id) # Recupera el usuario de la base de datos
+            usuario.nombres = jd['nombres']
+            usuario.apellidos = jd['apellidos']
+            usuario.save()
+            datos = {'message': "Success"}
+        else:
+            datos = {'message': "Usuario no encontrado..."}
+        return JsonResponse(datos)
