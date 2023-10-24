@@ -1,7 +1,7 @@
 from typing import Any
 from django import http
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 import random
 from .forms import TutorialForm
@@ -51,7 +51,16 @@ class TutorialCreate(CreateView):
             return self.render_to_response(self.get_context_data(form=form))
 
 class TutorialUpdate(UpdateView):
+    # Vista encargada de mostrar el formulario de modificación de un tutorial
+
     model = Tutorial
     template_name = 'tutorial/tutorial_form.html'
     form_class = TutorialForm
+    success_url = reverse_lazy('tutorial:Tutoriales')
+
+class TutorialDelete(DeleteView):
+    # Vista encargada de mostrar la confirmación de eliminación de un tutorial
+
+    model = Tutorial
+    template_name = 'tutorial/tutorial_confirm_delete.html'
     success_url = reverse_lazy('tutorial:Tutoriales')

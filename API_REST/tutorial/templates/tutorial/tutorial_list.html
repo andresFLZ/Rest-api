@@ -37,7 +37,7 @@
                             <td>{{ detalle.usuario_creador }}</td>
                             <td>{{ detalle.dia_creacion }}</td>
                             <td><button type="button" class="btn btn-success align-items-center" onclick="window.location.href = '{% url 'tutorial:Editar' tutorial.id_tutorial %}'">Editar</button></td>
-                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                            <td><button type="button" class="btn btn-danger" onclick="window.location.href = '{% url 'tutorial:Eliminar' tutorial.id_tutorial %}'">Eliminar</button></td>
                         </tr>
                     {% endif %}
                 {% endfor %}
