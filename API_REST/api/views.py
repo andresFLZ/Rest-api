@@ -4,6 +4,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from .models import Tutorial, Usuario, DetallesTutorial
 import json
+import requests
 
 
 class TutorialView(View):
@@ -111,6 +112,13 @@ class DetallesView(View):
 
         return super().dispatch(request, *args, **kwargs)
 
+    """def retornarRespuestaApi(self, request):
+        # Función encargada de realizar solicitudes a nuestra misma api o cualquier otra
+
+        response = requests.get(request) # Realiza un request al endpoint
+        datos = response.json()
+        return datos"""
+
     def get(self, request, id=0):
         # Implememtación del método GET en la api para recuperar detalles asociados a los tutoriales
 
@@ -129,3 +137,22 @@ class DetallesView(View):
             else:
                 datos = {'message': "Detalles no encontrados..."}
             return JsonResponse(datos)
+        
+    def post(self, request):
+        # Implememtación del método POST en la api para registrar un nuevo detalle
+
+        tutorial = None
+        usuario = None
+        jd = json.loads(request.body) # Recupera los datos del request
+
+        tutoriales = list(Tutorial.objects.filter(id_tutorial=jd['id_tutorial']).values()) # Recupera el tutorial de la base de datos
+        if len(tutoriales) > 0:
+            tutorial = Tutorial.objects.get(id_tutorial=jd['id_tutorial']) # este es el tutorial que se va a asociar con el detalle
+
+        usuarios = list(Usuario.objects.filter(id_usuario=jd['id_usuario_creador']).values()) # Recupera el usuario de la base de datos
+        if len(usuarios) > 0:
+            usuario = Usuario.objects.get(id_usuario=jd['id_usuario_creador']) # este es el usuario que se va a asociar con el detalle
+
+        DetallesTutorial.objects.create(id_tutorial=tutorial, usuario_creador=usuario) # Crea un detalle en la base de datos
+        datos = {'message': "Success"}
+        return JsonResponse(datos)
