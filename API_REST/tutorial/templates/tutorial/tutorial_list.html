@@ -1,0 +1,51 @@
+{% extends "tutorial/base.html" %}
+
+{% block content %}
+<div class="row">
+    <h1 class="text-center">TUTORIALES</h1>
+    <div class="col-12 text-center my-4">
+        <button type="button" class="btn btn-primary">añadir tutorial</button>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Creador</th>
+          <th scope="col">Fecha de creación</th>
+          <th scope="col">Editar tutorial</th>
+          <th scope="col">Eliminar tutorial</th>
+        </tr>
+    </thead>
+    {% if tutorial_list %}
+        <tbody>
+        {% for tutorial in tutorial_list %}
+            {% if detalle_tutorial %}
+                {% for detalle in detalle_tutorial %}
+                    {% if detalle.id_tutorial.id_tutorial == tutorial.id_tutorial %}
+                        <tr>
+                            <td>{{ tutorial.titulo }}</td>
+                            <td>{{ tutorial.descripcion }}</td>
+                            {% if tutorial.estado %}
+                                <td>Visible</td>
+                            {% else %}
+                                <td>Oculto</td>
+                            {% endif %}
+                            <td>{{ detalle.usuario_creador }}</td>
+                            <td>{{ detalle.dia_creacion }}</td>
+                            <td><button type="button" class="btn btn-success align-items-center" >Editar</button></td>
+                            <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}    
+        {% endfor %}
+        </tbody>
+    {% else %}
+        <p>No hay registro de tutoriales</p>
+    {% endif %}
+</table>
+{% endblock %}
