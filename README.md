@@ -33,3 +33,38 @@
 
 ## Funcionamiento
 
+- Pagina de inicio
+  
+<div id="img" align="center">
+  <image src="https://github.com/andresFLZ/Rest-api/blob/main/img/inicio.png" alt="Inicio">
+</div>
+    
+- Página de creación de tutoriales
+
+<div id="img" align="center">
+  <image src="https://github.com/andresFLZ/Rest-api/blob/main/img/creaci%C3%B3n%20de%20tutorial.png" alt="Creación tutorial">
+</div>
+
+- Página de eliminación de tutoriales
+
+<div id="img" align="center">
+  <image src="https://github.com/andresFLZ/Rest-api/blob/main/img/eliminaci%C3%B3n%20de%20un%20tutorial.png" alt="Eliminación tutorial">
+</div>
+
+- Creación de un tutorial
+
+<div id="header" align="center">
+  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Crear%20tutorial.gif" width="500" />
+</div>
+
+- Edición de un tutorial
+
+<div id="header" align="center">
+  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Edici%C3%B3n%20de%20un%20tutorial.gif" width="500" />
+</div>
+
+- Eliminación de un tutorial
+
+<div id="header" align="center">
+  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Eliminaci%C3%B3n%20de%20tutorial.gif" width="500" />
+</div>
