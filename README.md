@@ -20,6 +20,13 @@
   
 <img src="https://github.com/devicons/devicon/blob/master/icons/bootstrap/bootstrap-original.svg" title="Bootstrap" alt="Bootstrap" width="40" height="40"/>&nbsp;
 
+## Estructura empleada
+
+* API_REST
+  * API_REST
+  * api
+  * tutorial
+
 - Bases de datos:
 
 <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="Javascript" alt="Javascript" width="40" height="40"/>&nbsp;
