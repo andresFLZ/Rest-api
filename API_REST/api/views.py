@@ -34,7 +34,7 @@ class TutorialView(View):
             return JsonResponse(datos)
         
     def post(self, request):
-        # Implememtación del método POST en la api para registrar datos en Tutorial
+        # Implememtación del método POST en la api para registrar un nuevo tutorial
 
         jd = json.loads(request.body) # Recupera los datos del request
         Tutorial.objects.create(titulo=jd['titulo'], descripcion=jd['descripcion'], estado=jd['estado']) # Crea un tutorial en la base de datos
@@ -94,3 +94,11 @@ class UsuarioView(View):
             else:
                 datos = {'message': "usuarios no encontrados..."}
             return JsonResponse(datos)
+    
+    def post(self, request):
+        # Implememtación del método POST en la api para registrar usuarios 
+
+        jd = json.loads(request.body) # Recupera los datos del request
+        Usuario.objects.create(nombres=jd['nombres'], apellidos=jd['apellidos']) # Crea un usuario en la base de datos
+        datos = {'message': "Success"}
+        return JsonResponse(datos)
