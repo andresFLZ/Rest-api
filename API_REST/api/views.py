@@ -21,14 +21,14 @@ class TutorialView(View):
             tutoriales = list(Tutorial.objects.filter(id_tutorial=id).values()) # Recupera el tutorial de la base de datos
             if len(tutoriales) > 0:
                 tutorial = tutoriales[0]
-                datos = {'message': "Success", 'company': tutorial}
+                datos = {'message': "Success", 'tutorial': tutorial}
             else:
                 datos = {'message': "Tutorial no encontrado..."}
             return JsonResponse(datos)
         else: # Devuelve todos los tutoriales 
             tutoriales = list(Tutorial.objects.values()) # Recupera los tutoriales de la base de datos
             if len(tutoriales) > 0:
-                datos = {'message': "Success", 'companies': tutoriales}
+                datos = {'message': "Success", 'tutoriales': tutoriales}
             else:
                 datos = {'message': "Tutoriales no encontrados..."}
             return JsonResponse(datos)
@@ -83,14 +83,14 @@ class UsuarioView(View):
             usuarios = list(Usuario.objects.filter(id_usuario=id).values()) # Recupera el usuario de la base de datos
             if len(usuarios) > 0:
                 usuario = usuarios[0]
-                datos = {'message': "Success", 'company': usuario}
+                datos = {'message': "Success", 'usuario': usuario}
             else:
                 datos = {'message': "Usuario no encontrado..."}
             return JsonResponse(datos)
         else: # Devuelve todos los usuarios 
             usuarios = list(Usuario.objects.values()) # Recupera los usuarios de la base de datos
             if len(usuarios) > 0:
-                datos = {'message': "Success", 'companies': usuarios}
+                datos = {'message': "Success", 'usuarios': usuarios}
             else:
                 datos = {'message': "usuarios no encontrados..."}
             return JsonResponse(datos)
@@ -103,4 +103,29 @@ class UsuarioView(View):
         datos = {'message': "Success"}
         return JsonResponse(datos)
     
-    
+class DetallesView(View):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        # Función encargada de permitir los envios POST ignorando el csrf
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, id=0):
+        # Implememtación del método GET en la api para recuperar detalles asociados a los tutoriales
+
+        if (id > 0): # Devuele un detalle en especifico dependiendo del id
+            detalles = list(DetallesTutorial.objects.filter(id_detalles=id).values()) # Recupera el detalle de la base de datos
+            if len(detalles) > 0:
+                detalle = detalles[0]
+                datos = {'message': "Success", 'detalle': detalle}
+            else:
+                datos = {'message': "Detalle no encontrado..."}
+            return JsonResponse(datos)
+        else: # Devuelve todos los detalles 
+            detalles = list(DetallesTutorial.objects.values()) # Recupera los detalles de la base de datos
+            if len(detalles) > 0:
+                datos = {'message': "Success", 'detalles': detalles}
+            else:
+                datos = {'message': "Detalles no encontrados..."}
+            return JsonResponse(datos)
