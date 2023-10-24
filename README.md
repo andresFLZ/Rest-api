@@ -26,7 +26,7 @@
 
 ## Estructura empleada
 
-- API_REST
-    - API_REST
-    - api
-    - tutorial
+- API_REST (Carpeta principal)
+    - API_REST (Carpeta de configuración de la aplicación)
+    - api (Carpeta donde se desarolla toda la lógica de la api, incluidos los modelos de la base de datos)
+    - tutorial (Carpeta donde se desarollan las vistas de la aplicación)
