@@ -169,3 +169,14 @@ class DetallesView(View):
         else:
             datos = {'message': "Detalle no encontrado..."}
         return JsonResponse(datos)
+    
+    def delete(self, request, id):
+        # Implememtación del método DELETE en la api para eliminar un detalle asociado a un tutorial
+
+        detalles = list(DetallesTutorial.objects.filter(id_detalles=id).values()) # Recupera el detalle de la base de datos
+        if len(detalles) > 0:
+            DetallesTutorial.objects.filter(id_detalles=id).delete() # Elimina el detalle de la base de datos
+            datos = {'message': "Success"}
+        else:
+            datos = {'message': "Tutorial no encontrado..."}
+        return JsonResponse(datos)
