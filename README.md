@@ -31,6 +31,12 @@
     - api (Carpeta donde se desarolla toda la lógica de la api, incluidos los modelos de la base de datos)
     - tutorial (Carpeta donde se desarollan las vistas de la aplicación)
 
+## Modelo de la base de datos
+
+<div id="img" align="center">
+  <image src="https://github.com/andresFLZ/Rest-api/blob/main/img/modeloDB.png" alt="Base de datos">
+</div>
+
 ## Funcionamiento
 
 - Pagina de inicio
@@ -54,17 +60,17 @@
 - Creación de un tutorial
 
 <div id="header" align="center">
-  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Crear%20tutorial.gif" width="500" />
+  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Crear%20tutorial.gif" width="700" />
 </div>
 
 - Edición de un tutorial
 
 <div id="header" align="center">
-  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Edici%C3%B3n%20de%20un%20tutorial.gif" width="500" />
+  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Edici%C3%B3n%20de%20un%20tutorial.gif" width="700" />
 </div>
 
 - Eliminación de un tutorial
 
 <div id="header" align="center">
-  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Eliminaci%C3%B3n%20de%20tutorial.gif" width="500" />
+  <img src="https://github.com/andresFLZ/Rest-api/blob/main/img/Eliminaci%C3%B3n%20de%20tutorial.gif" width="700" />
 </div>
