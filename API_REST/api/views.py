@@ -111,13 +111,16 @@ class DetallesView(View):
         # Función encargada de permitir los envios POST ignorando el csrf
 
         return super().dispatch(request, *args, **kwargs)
-
-    """def retornarRespuestaApi(self, request):
-        # Función encargada de realizar solicitudes a nuestra misma api o cualquier otra
-
-        response = requests.get(request) # Realiza un request al endpoint
-        datos = response.json()
-        return datos"""
+    
+    def recuperarTutorial(self, id):
+        tutoriales = list(Tutorial.objects.filter(id_tutorial=id).values()) # Recupera el tutorial de la base de datos
+        if len(tutoriales) > 0:
+            return Tutorial.objects.get(id_tutorial=id) # este es el tutorial que se va a asociar con el detalle
+        
+    def recuperarUsuario(self, id):
+        usuarios = list(Usuario.objects.filter(id_usuario=id).values()) # Recupera el usuario de la base de datos
+        if len(usuarios) > 0:
+            return Usuario.objects.get(id_usuario=id) # este es el usuario que se va a asociar con el detalle
 
     def get(self, request, id=0):
         # Implememtación del método GET en la api para recuperar detalles asociados a los tutoriales
@@ -141,18 +144,28 @@ class DetallesView(View):
     def post(self, request):
         # Implememtación del método POST en la api para registrar un nuevo detalle
 
-        tutorial = None
-        usuario = None
         jd = json.loads(request.body) # Recupera los datos del request
-
-        tutoriales = list(Tutorial.objects.filter(id_tutorial=jd['id_tutorial']).values()) # Recupera el tutorial de la base de datos
-        if len(tutoriales) > 0:
-            tutorial = Tutorial.objects.get(id_tutorial=jd['id_tutorial']) # este es el tutorial que se va a asociar con el detalle
-
-        usuarios = list(Usuario.objects.filter(id_usuario=jd['id_usuario_creador']).values()) # Recupera el usuario de la base de datos
-        if len(usuarios) > 0:
-            usuario = Usuario.objects.get(id_usuario=jd['id_usuario_creador']) # este es el usuario que se va a asociar con el detalle
+        tutorial = self.recuperarTutorial(jd['id_tutorial'])
+        usuario = self.recuperarUsuario(jd['id_usuario_creador'])
 
         DetallesTutorial.objects.create(id_tutorial=tutorial, usuario_creador=usuario) # Crea un detalle en la base de datos
         datos = {'message': "Success"}
+        return JsonResponse(datos)
+    
+    def put(self, request, id):
+        # Implememtación del método PUT en la api para actualizar datos de un detalle asociado a un tutorial
+
+        jd = json.loads(request.body) # Recupera los datos del request
+        tutorial = self.recuperarTutorial(jd['id_tutorial']) # Esté es el tutorial nuevo
+        usuario = self.recuperarUsuario(jd['id_usuario_creador']) # Esté es el usuario nuevo
+        print(tutorial, usuario)
+        detalles = list(DetallesTutorial.objects.filter(id_detalles=id).values())
+        if len(detalles) > 0:
+            detalle = DetallesTutorial.objects.get(id_detalles=id) # Recupera el detalle de un tutorial de la base de datos
+            detalle.id_tutorial = tutorial
+            detalle.usuario_creador = usuario
+            detalle.save()
+            datos = {'message': "Success"}
+        else:
+            datos = {'message': "Detalle no encontrado..."}
         return JsonResponse(datos)
