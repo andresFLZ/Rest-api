@@ -52,4 +52,4 @@ class DetallesTutorial(models.Model):
         verbose_name_plural = 'detalles de los tutoriales'
 
     def __str__(self):
-        return self.dia_creacion
+        return str(self.dia_creacion)
