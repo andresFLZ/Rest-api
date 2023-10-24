@@ -56,3 +56,14 @@ class TutorialView(View):
         else:
             datos = {'message': "Tutorial no encontrado..."}
         return JsonResponse(datos)
+    
+    def delete(self, request, id):
+        # Implememtación del método DELETE en la api para eliminar datos de Tutorial
+
+        tutoriales = list(Tutorial.objects.filter(id_tutorial=id).values()) # Recupera el tutorial de la base de datos
+        if len(tutoriales) > 0:
+            Tutorial.objects.filter(id_tutorial=id).delete() # Elimina el tutorial de la base de datos
+            datos = {'message': "Success"}
+        else:
+            datos = {'message': "Tutorial no encontrado..."}
+        return JsonResponse(datos)
