@@ -117,3 +117,14 @@ class UsuarioView(View):
         else:
             datos = {'message': "Usuario no encontrado..."}
         return JsonResponse(datos)
+    
+    def delete(self, request, id):
+        # Implememtación del método DELETE en la api para eliminar usuarios
+
+        usuarios = list(Usuario.objects.filter(id_usuario=id).values()) # Recupera el usuario de la base de datos
+        if len(usuarios) > 0:
+            Usuario.objects.filter(id_usuario=id).delete() # Elimina el usuario de la base de datos
+            datos = {'message': "Success"}
+        else:
+            datos = {'message': "Usuario no encontrado..."}
+        return JsonResponse(datos)
